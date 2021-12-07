@@ -29,9 +29,12 @@ class Timer {
       const currentTime = Date.now();
       const deltaTime = startTime - currentTime;
       const time = this.convertMs(deltaTime);
-      
+      if (deltaTime < 1000) {
+      clearInterval(this.intervalId);
+    }
       this.onTick(time);
     }, 1000);
+    
   }
   
   convertMs(ms) {
